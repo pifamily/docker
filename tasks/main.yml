@@ -1,0 +1,16 @@
+---
+# tasks file for docker
+- name: Get install script
+  shell:
+    cmd: curl -fsSL https://get.Docker.com -o get-Docker.sh
+- name: Execute install script
+  shell:
+    cmd: sh get-Docker.sh
+  become: true
+- name: Add user
+  shell:
+    cmd: usermod -aG docker pi
+  become: true
+- name: Reload groups
+  shell:
+    cmd: newgrp docker
