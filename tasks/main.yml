@@ -11,6 +11,18 @@
   shell:
     cmd: usermod -aG docker pi
   become: true
-- name: Reload groups
+#- name: Reload groups
+#  shell:
+#    cmd: newgrp docker
+# Docker compose
+- name: Install compose dependencies
+  apt:
+    pkg:
+    - python3-dev
+    - python3
+    - python3-pip
+  become: true
+- name: Install Docker Compose
   shell:
-    cmd: newgrp docker
+    cmd: pip3 install docker-compose
+  become: true
